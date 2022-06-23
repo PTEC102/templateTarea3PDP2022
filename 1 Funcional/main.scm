@@ -1,0 +1,23 @@
+(load "notas.scm")
+(define (promedio l cont sum)
+  (if  (null? l)
+    (if (< cont 3)
+      (display (/ (+ sum (- 3 cont)) (+ cont (- 3 cont))))
+      (display (/ sum cont))
+    )
+    (promedio (cdr l) (+ cont 1) (+ sum (car l)))
+  )
+)
+
+(define (listaalumnos li)
+  (if (null? li)
+    0
+    (begin
+      (display (car (car li)))
+      (display " ")
+      (promedio (cdr (car li)) 0 0)(newline)
+      (listaalumnos (cdr li))
+    )
+  )
+)
+(listaalumnos notas)
